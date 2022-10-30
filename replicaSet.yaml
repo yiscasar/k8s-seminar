@@ -21,10 +21,10 @@ spec:
     volumeMounts:
     - mountPath: /storage/app1
       name: app-storage
-    - name: app2
-      image: yanivomc/spring-music:latest
-      ports: 
-      - containerPort: 3000
+  - name: app2
+    image: yanivomc/spring-music:latest
+    ports: 
+    - containerPort: 3000
     volumeMounts:
     - mountPath: /storage/app2
       name: app-storage
