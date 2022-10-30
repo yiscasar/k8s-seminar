@@ -14,22 +14,24 @@ spec:
       labels:
         app: replica-set
   containers: 
-  - name: app1
+  - name: bear
     image: supergiantkir/animals:bear
     ports: 
     - containerPort: 80
     volumeMounts:
-    - mountPath: /storage/app1
+    - mountPath: /storage/c1
       name: app-storage
-  - name: app2
-    image: yanivomc/spring-music:latest
+  - name: juice-shop
+    image: bkimminich/juice-shop
     ports: 
     - containerPort: 3000
     volumeMounts:
-    - mountPath: /storage/app2
+    - mountPath: /storage/c2
       name: app-storage
   volumes:
     - name: app-storage
       hostPath:
+        # directory location on host
         path: /tmp/files
-        type: DirectoryOrCreate
+        # this field is optional
+        type: DirectoryOrCreate	
