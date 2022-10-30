@@ -13,25 +13,26 @@ spec:
     metadata:
       labels:
         app: replica-set
-  containers: 
-  - name: bear
-    image: supergiantkir/animals:bear
-    ports: 
-    - containerPort: 80
-    volumeMounts:
-    - mountPath: /storage/c1
-      name: app-storage
-  - name: juice-shop
-    image: bkimminich/juice-shop
-    ports: 
-    - containerPort: 3000
-    volumeMounts:
-    - mountPath: /storage/c2
-      name: app-storage
-  volumes:
-    - name: app-storage
-      hostPath:
-        # directory location on host
-        path: /tmp/files
-        # this field is optional
-        type: DirectoryOrCreate	
+    spec:
+      containers: 
+      - name: bear
+        image: supergiantkir/animals:bear
+        ports: 
+        - containerPort: 80
+        volumeMounts:
+        - mountPath: /storage/c1
+          name: app-storage
+      - name: juice-shop
+        image: bkimminich/juice-shop
+        ports: 
+        - containerPort: 3000
+        volumeMounts:
+        - mountPath: /storage/c2
+          name: app-storage
+      volumes:
+        - name: app-storage
+          hostPath:
+            # directory location on host
+            path: /tmp/files
+            # this field is optional
+            type: DirectoryOrCreate	
