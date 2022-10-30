@@ -1,5 +1,5 @@
-apiVersion: apps/v1
-kind: ReplicaSet  
+apiVersion: v1
+kind: Pod  
 metadata: 
   name: replica-set
   labels:
@@ -14,7 +14,9 @@ spec:
       labels:
         app: replica-set
     spec:
-      containers: 
+      containers:
+      nodeSelctor:
+        env: prod
       - name: bear
         image: supergiantkir/animals:bear
         ports: 
