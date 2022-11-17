@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: yanivomc
+spec:
+  selector:
+    matchLabels:
+      app: yanivomc
+  replicas: 2
+  template: 
+    metadata:
+      labels:
+        app: yanivomc
+    spec:
+      containers:
+      - name: yanivomc
+        image: yanivomc/spring-music:latest
+        ports:
+        - containerPort: 8080
+---
+kind: Service      # Create new service
+apiVersion: v1     
+metadata:
+  name: my-service # Name of the service
+spec:
+  selector:
+    app: yanivomc    # Run on any pod(s) with label - app: myapp
+  ports:          # Map incoming port to target port
+  - name: http-web    # Setting multiple ports listterns 
+    protocol: TCP
+    port: 80
+    targetPort: 8080
+  type: LoadBalancer
